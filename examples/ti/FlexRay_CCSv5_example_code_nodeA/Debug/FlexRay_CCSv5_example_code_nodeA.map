@@ -1,0 +1,340 @@
+******************************************************************************
+                  TI ARM Linker PC v5.2.5                      
+******************************************************************************
+>> Linked Wed Nov 11 08:03:49 2015
+
+OUTPUT FILE NAME:   <FlexRay_CCSv5_example_code_nodeA.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00001ab8
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  VECTORS               00000000   00000020  00000020  00000000     X
+  FLASH0                00000020   0017ffe0  000026b0  0017d930  R  X
+  FLASH1                00180000   00180000  00000000  00180000  R  X
+  STACKS                08000000   00001500  00000000  00001500  RW  
+  RAM                   08001500   00026b00  000000d0  00026a30  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    000026d0   000026d0    r-x
+  00000000    00000000    00000020   00000020    r-x .intvecs
+  00000020    00000020    0000250c   0000250c    r-x .text
+  0000252c    0000252c    0000016c   0000016c    r-- .const
+  00002698    00002698    00000038   00000038    r-- .cinit
+08001500    08001500    000000d0   00000000    rw-
+  08001500    08001500    000000c0   00000000    rw- .bss
+  080015c0    080015c0    00000010   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000020     
+                  00000000    00000020     sys_intvecs.obj (.intvecs)
+
+.text      0    00000020    0000250c     
+                  00000020    00000bac     FlexRay.obj (.text)
+                  00000bcc    00000638     Fr.obj (.text)
+                  00001204    0000043c     sys_esm.obj (.text)
+                  00001640    0000023c     gio.obj (.text)
+                  0000187c    0000023c     system.obj (.text)
+                  00001ab8    0000022c     sys_startup.obj (.text:retain)
+                  00001ce4    00000220     sys_esm.obj (.text:retain)
+                  00001f04    000001e8     sys_core.obj (.text)
+                  000020ec    000000e4     led_demo.obj (.text)
+                  000021d0    000000b8     gio.obj (.text:retain)
+                  00002288    0000009c     rtsv7R4_T_be_v3D16_eabi.lib : memcpy_t2.obj (.text)
+                  00002324    0000007a                                 : memset_t2.obj (.text)
+                  0000239e    0000006a                                 : copy_decompress_rle.obj (.text)
+                  00002408    0000004c                                 : cpy_tbl.obj (.text)
+                  00002454    00000040                                 : exit.obj (.text)
+                  00002494    00000034     sys_memory.obj (.text)
+                  000024c8    0000002c     sys_main.obj (.text)
+                  000024f4    00000014     rtsv7R4_T_be_v3D16_eabi.lib : _lock.obj (.text)
+                  00002508    0000000e                                 : copy_decompress_none.obj (.text:decompress:none)
+                  00002516    0000000c                                 : copy_zero_init.obj (.text:decompress:ZI)
+                  00002522    00000006                                 : copy_decompress_rle.obj (.text:decompress:rle24)
+                  00002528    00000004     sys_phantom.obj (.text:retain)
+
+.const     0    0000252c    0000016c     
+                  0000252c    0000016c     sys_startup.obj (.const:s_vim_init)
+
+.cinit     0    00002698    00000038     
+                  00002698    00000011     (.cinit..data.load) [load image, compression = rle]
+                  000026a9    00000003     --HOLE-- [fill = 0]
+                  000026ac    0000000c     (__TI_handler_table)
+                  000026b8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  000026c0    00000010     (__TI_cinit_table)
+
+.bss       0    08001500    000000c0     UNINITIALIZED
+                  08001500    00000044     FlexRay.obj (.bss:Fr_Config)
+                  08001544    00000034     FlexRay.obj (.bss:Fr_LPdu)
+                  08001578    00000024     FlexRay.obj (.bss:Fr_LSdu1)
+                  0800159c    00000024     FlexRay.obj (.bss:Fr_LSdu2)
+
+.TI.noinit 
+*          0    08001500    00000000     UNINITIALIZED
+
+.data      0    080015c0    00000010     UNINITIALIZED
+                  080015c0    00000008     rtsv7R4_T_be_v3D16_eabi.lib : _lock.obj (.data)
+                  080015c8    00000008                                 : exit.obj (.data)
+
+.TI.persistent 
+*          0    080015c0    00000000     UNINITIALIZED
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 000026c0 records: 2, size/record: 8, table size: 16
+	.data: load addr=00002698, load size=00000011 bytes, run addr=080015c0, run size=00000010 bytes, compression=rle
+	.bss: load addr=000026b8, load size=00000008 bytes, run addr=08001500, run size=000000c0 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 000026ac records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                
+-------   ----                                
+00002455  C$$EXIT                             
+00001028  Fr_AllowColdStart                   
+08001500  Fr_Config                           
+00000f68  Fr_ControllerInit                   
+00000ce8  Fr_Init                             
+08001544  Fr_LPdu                             
+08001578  Fr_LSdu1                            
+0800159c  Fr_LSdu2                            
+00000bcc  Fr_PrepareLPdu                      
+00000ebc  Fr_ReceiveRxLPdu                    
+00001078  Fr_StartCommunication               
+00000e0c  Fr_TransmitTxLPdu                   
+UNDEFED   SHT$$INIT_ARRAY$$Base               
+UNDEFED   SHT$$INIT_ARRAY$$Limit              
+000026c0  __TI_CINIT_Base                     
+000026d0  __TI_CINIT_Limit                    
+000026ac  __TI_Handler_Table_Base             
+000026b8  __TI_Handler_Table_Limit            
+000020e4  __TI_PINIT_Base                     
+000020e8  __TI_PINIT_Limit                    
+080015c8  __TI_cleanup_ptr                    
+00002509  __TI_decompress_none                
+00002523  __TI_decompress_rle24               
+080015cc  __TI_dtors_ptr                      
+00000000  __TI_static_base__                  
+00002517  __TI_zero_init                      
+00002325  __aeabi_memclr                      
+00002325  __aeabi_memclr4                     
+00002325  __aeabi_memclr8                     
+00002289  __aeabi_memcpy                      
+00002289  __aeabi_memcpy4                     
+00002289  __aeabi_memcpy8                     
+00002327  __aeabi_memset                      
+00002327  __aeabi_memset4                     
+00002327  __aeabi_memset8                     
+ffffffff  __binit__                           
+ffffffff  __c_args__                          
+00001ab8  _c_int00                            
+000020c4  _coreClearAuxiliaryDataFault_       
+000020d8  _coreClearAuxiliaryInstructionFault_
+0000209c  _coreClearDataFaultAddress_         
+00002074  _coreClearDataFault_                
+000020b0  _coreClearInstructionFaultAddress_  
+00002088  _coreClearInstructionFault_         
+0000200c  _coreDisableEventBusExport_         
+0000204c  _coreDisableFlashEcc_               
+0000202c  _coreDisableRamEcc_                 
+00001ffc  _coreEnableEventBusExport_          
+0000203c  _coreEnableFlashEcc_                
+0000205c  _coreEnableIrqVicOffset_            
+0000201c  _coreEnableRamEcc_                  
+000020bc  _coreGetAuxiliaryDataFault_         
+000020d0  _coreGetAuxiliaryInstructionFault_  
+00002094  _coreGetDataFaultAddress_           
+0000206c  _coreGetDataFault_                  
+000020a8  _coreGetInstructionFaultAddress_    
+00002080  _coreGetInstructionFault_           
+00001f04  _coreInitRegisters_                 
+00001fb0  _coreInitStackPointer_              
+080015c0  _lock                               
+00002494  _memoryInit_                        
+00002503  _nop                                
+000024fb  _register_lock                      
+000024f5  _register_unlock                    
+080015c4  _unlock                             
+00002459  abort                               
+ffffffff  binit                               
+00000020  configure_initialize_node_a         
+000005cc  configure_initialize_node_b         
+00002409  copy_in                             
+000013b4  esmActivateNormalOperation          
+000014a0  esmClearStatus                      
+000014e0  esmClearStatusBuffer                
+00001378  esmDisableError                     
+000013f0  esmDisableInterrupt                 
+0000134c  esmEnableError                      
+000013c4  esmEnableInterrupt                  
+00001330  esmError                            
+0000152c  esmGetStatus                        
+00001590  esmGetStatusBuffer                  
+000015cc  esmGroup1Notification               
+000015d8  esmGroup2Notification               
+00001ce4  esmHighInterrupt                    
+00001204  esmInit                             
+00001e28  esmLowInterrupt                     
+0000150c  esmSetCounterPreloadValue           
+0000141c  esmSetInterruptLevel                
+000013a4  esmTriggerErrorPinReset             
+00002461  exit                                
+00001814  gioDisableNotification              
+000017f0  gioEnableNotification               
+000017b0  gioGetBit                           
+000017d8  gioGetPort                          
+000021d0  gioHighLevelInterrupt               
+00001650  gioInit                             
+00002228  gioLowLevelInterrupt                
+00001640  gioNotification                     
+00001740  gioSetBit                           
+00001720  gioSetDirection                     
+00001790  gioSetPort                          
+000010b8  header_crc_calc                     
+000024c8  main                                
+00002289  memcpy                              
+0000232d  memset                              
+00002528  phantomInterrupt                    
+000020ec  run_LED_StartUp                     
+0000187c  systemInit                          
+00001a40  systemPowerDown                     
+00000440  transmit_check_node_a               
+000009ec  transmit_check_node_b               
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                
+-------   ----                                
+00000000  __TI_static_base__                  
+00000020  configure_initialize_node_a         
+00000440  transmit_check_node_a               
+000005cc  configure_initialize_node_b         
+000009ec  transmit_check_node_b               
+00000bcc  Fr_PrepareLPdu                      
+00000ce8  Fr_Init                             
+00000e0c  Fr_TransmitTxLPdu                   
+00000ebc  Fr_ReceiveRxLPdu                    
+00000f68  Fr_ControllerInit                   
+00001028  Fr_AllowColdStart                   
+00001078  Fr_StartCommunication               
+000010b8  header_crc_calc                     
+00001204  esmInit                             
+00001330  esmError                            
+0000134c  esmEnableError                      
+00001378  esmDisableError                     
+000013a4  esmTriggerErrorPinReset             
+000013b4  esmActivateNormalOperation          
+000013c4  esmEnableInterrupt                  
+000013f0  esmDisableInterrupt                 
+0000141c  esmSetInterruptLevel                
+000014a0  esmClearStatus                      
+000014e0  esmClearStatusBuffer                
+0000150c  esmSetCounterPreloadValue           
+0000152c  esmGetStatus                        
+00001590  esmGetStatusBuffer                  
+000015cc  esmGroup1Notification               
+000015d8  esmGroup2Notification               
+00001640  gioNotification                     
+00001650  gioInit                             
+00001720  gioSetDirection                     
+00001740  gioSetBit                           
+00001790  gioSetPort                          
+000017b0  gioGetBit                           
+000017d8  gioGetPort                          
+000017f0  gioEnableNotification               
+00001814  gioDisableNotification              
+0000187c  systemInit                          
+00001a40  systemPowerDown                     
+00001ab8  _c_int00                            
+00001ce4  esmHighInterrupt                    
+00001e28  esmLowInterrupt                     
+00001f04  _coreInitRegisters_                 
+00001fb0  _coreInitStackPointer_              
+00001ffc  _coreEnableEventBusExport_          
+0000200c  _coreDisableEventBusExport_         
+0000201c  _coreEnableRamEcc_                  
+0000202c  _coreDisableRamEcc_                 
+0000203c  _coreEnableFlashEcc_                
+0000204c  _coreDisableFlashEcc_               
+0000205c  _coreEnableIrqVicOffset_            
+0000206c  _coreGetDataFault_                  
+00002074  _coreClearDataFault_                
+00002080  _coreGetInstructionFault_           
+00002088  _coreClearInstructionFault_         
+00002094  _coreGetDataFaultAddress_           
+0000209c  _coreClearDataFaultAddress_         
+000020a8  _coreGetInstructionFaultAddress_    
+000020b0  _coreClearInstructionFaultAddress_  
+000020bc  _coreGetAuxiliaryDataFault_         
+000020c4  _coreClearAuxiliaryDataFault_       
+000020d0  _coreGetAuxiliaryInstructionFault_  
+000020d8  _coreClearAuxiliaryInstructionFault_
+000020e4  __TI_PINIT_Base                     
+000020e8  __TI_PINIT_Limit                    
+000020ec  run_LED_StartUp                     
+000021d0  gioHighLevelInterrupt               
+00002228  gioLowLevelInterrupt                
+00002289  __aeabi_memcpy                      
+00002289  __aeabi_memcpy4                     
+00002289  __aeabi_memcpy8                     
+00002289  memcpy                              
+00002325  __aeabi_memclr                      
+00002325  __aeabi_memclr4                     
+00002325  __aeabi_memclr8                     
+00002327  __aeabi_memset                      
+00002327  __aeabi_memset4                     
+00002327  __aeabi_memset8                     
+0000232d  memset                              
+00002409  copy_in                             
+00002455  C$$EXIT                             
+00002459  abort                               
+00002461  exit                                
+00002494  _memoryInit_                        
+000024c8  main                                
+000024f5  _register_unlock                    
+000024fb  _register_lock                      
+00002503  _nop                                
+00002509  __TI_decompress_none                
+00002517  __TI_zero_init                      
+00002523  __TI_decompress_rle24               
+00002528  phantomInterrupt                    
+000026ac  __TI_Handler_Table_Base             
+000026b8  __TI_Handler_Table_Limit            
+000026c0  __TI_CINIT_Base                     
+000026d0  __TI_CINIT_Limit                    
+08001500  Fr_Config                           
+08001544  Fr_LPdu                             
+08001578  Fr_LSdu1                            
+0800159c  Fr_LSdu2                            
+080015c0  _lock                               
+080015c4  _unlock                             
+080015c8  __TI_cleanup_ptr                    
+080015cc  __TI_dtors_ptr                      
+ffffffff  __binit__                           
+ffffffff  __c_args__                          
+ffffffff  binit                               
+UNDEFED   SHT$$INIT_ARRAY$$Base               
+UNDEFED   SHT$$INIT_ARRAY$$Limit              
+
+[110 symbols]
