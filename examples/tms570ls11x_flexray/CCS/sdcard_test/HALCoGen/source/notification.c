@@ -50,6 +50,7 @@
 
 #include "esm.h"
 #include "sys_selftest.h"
+#include "gio.h"
 #include "mibspi.h"
 #include "sci.h"
 #include "rti.h"
@@ -112,6 +113,16 @@ void rtiNotification(uint32 notification)
 }
 
 /* USER CODE BEGIN (10) */
+/* USER CODE END */
+#pragma WEAK(gioNotification)
+void gioNotification(gioPORT_t *port, uint32 bit)
+{
+/*  enter user code between the USER CODE BEGIN and USER CODE END. */
+/* USER CODE BEGIN (19) */
+/* USER CODE END */
+}
+
+/* USER CODE BEGIN (20) */
 /* USER CODE END */
 #pragma WEAK(mibspiNotification)
 void mibspiNotification(mibspiBASE_t *mibspi, uint32 flags)

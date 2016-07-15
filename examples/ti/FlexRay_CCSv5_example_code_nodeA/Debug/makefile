@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6
+CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -136,6 +136,12 @@ FlexRay_CCSv5_example_code_nodeA.out \
 EXE_OUTPUTS__QUOTED += \
 "FlexRay_CCSv5_example_code_nodeA.out" \
 
+BIN_OUTPUTS += \
+FlexRay_CCSv5_example_code_nodeA.hex \
+
+BIN_OUTPUTS__QUOTED += \
+"FlexRay_CCSv5_example_code_nodeA.hex" \
+
 
 # All Target
 all: FlexRay_CCSv5_example_code_nodeA.out
@@ -143,14 +149,20 @@ all: FlexRay_CCSv5_example_code_nodeA.out
 # Tool invocations
 FlexRay_CCSv5_example_code_nodeA.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: TMS470 Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --diag_warning=225 --display_error_number --enum_type=packed -z -m"FlexRay_CCSv5_example_code_nodeA.map" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/include" --reread_libs --warn_sections --xml_link_info="FlexRay_CCSv5_example_code_nodeA_linkInfo.xml" --rom_model --be32 -o "FlexRay_CCSv5_example_code_nodeA.out" $(ORDERED_OBJS)
+	@echo 'Invoking: ARM Linker'
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --display_error_number --diag_warning=225 --enum_type=packed -z -m"FlexRay_CCSv5_example_code_nodeA.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include" --reread_libs --warn_sections --xml_link_info="FlexRay_CCSv5_example_code_nodeA_linkInfo.xml" --rom_model --be32 -o "FlexRay_CCSv5_example_code_nodeA.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
+	@echo ' '
+
+FlexRay_CCSv5_example_code_nodeA.hex: $(EXE_OUTPUTS)
+	@echo 'Invoking: ARM Hex Utility'
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/bin/armhex"  -o "FlexRay_CCSv5_example_code_nodeA.hex" $(EXE_OUTPUTS__QUOTED)
+	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXE_OUTPUTS__QUOTED)
+	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
 	-$(RM) "FlexRay.pp" "Fr.pp" "gio.pp" "led_demo.pp" "pinmux.pp" "sys_esm.pp" "sys_main.pp" "sys_phantom.pp" "sys_startup.pp" "system.pp" 
 	-$(RM) "FlexRay.obj" "Fr.obj" "gio.obj" "led_demo.obj" "pinmux.obj" "sys_core.obj" "sys_esm.obj" "sys_intvecs.obj" "sys_main.obj" "sys_memory.obj" "sys_mpu.obj" "sys_phantom.obj" "sys_pmu.obj" "sys_startup.obj" "system.obj" 
 	-$(RM) "sys_core.pp" "sys_intvecs.pp" "sys_memory.pp" "sys_mpu.pp" "sys_pmu.pp" 

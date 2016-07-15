@@ -56,7 +56,8 @@
 #include "rti.h"
 #include "uartstdio.h"
 #include "mmc-test.h"
-
+#include "gio.h"
+#include "Fr.h"
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -70,14 +71,34 @@
 /* USER CODE BEGIN (2) */
 
 extern int SD_Test(void);
-
+void delay(unsigned int count);
 /* USER CODE END */
+
+void delay(unsigned int count)
+
+{
+
+    register unsigned int i;
+
+    for (i=0;i<count;i++);
+
+}
 
 void main(void)
 {
 /* USER CODE BEGIN (3) */
+	gioInit();
+	sciInit();
+	configure_initialize_node_a(FRAY1);
+	Fr_StartCommunication(FRAY1);
 
-#if 1
+	while(1)
+	{
+			transmit_check_node_a(FRAY1);
+			UARTprintf("--> FRAY Test running...<--\r\n ");
+			delay(0xFFFF);
+	}
+#if 0
     /** - Initialize LIN/SCI2 Routines to receive Command and transmit data */
     sciInit();
 

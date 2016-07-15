@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v5.2.5                      
 ******************************************************************************
->> Linked Wed Nov 11 08:03:49 2015
+>> Linked Sun Apr 24 14:04:33 2016
 
 OUTPUT FILE NAME:   <FlexRay_CCSv5_example_code_nodeA.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00001ab8

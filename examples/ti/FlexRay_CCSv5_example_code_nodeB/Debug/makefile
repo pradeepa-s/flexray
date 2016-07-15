@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6
+CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -144,7 +144,7 @@ all: FlexRay_CCSv5_example_code_nodeB.out
 FlexRay_CCSv5_example_code_nodeB.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: TMS470 Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --diag_warning=225 --display_error_number --enum_type=packed -z -m"FlexRay_CCSv5_example_code_nodeB.map" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.6/include" --reread_libs --warn_sections --xml_link_info="FlexRay_CCSv5_example_code_nodeB_linkInfo.xml" --rom_model --be32 -o "FlexRay_CCSv5_example_code_nodeB.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --diag_warning=225 --display_error_number --enum_type=packed -z -m"FlexRay_CCSv5_example_code_nodeB.map" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include" --reread_libs --warn_sections --xml_link_info="FlexRay_CCSv5_example_code_nodeB_linkInfo.xml" --rom_model --be32 -o "FlexRay_CCSv5_example_code_nodeB.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
